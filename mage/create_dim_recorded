@@ -1,0 +1,25 @@
+CREATE OR REPLACE TABLE `crack-celerity-435208-v5.real_estate_sales_db.dim_dates_recorded` (
+    date_id INT64,
+    date DATE,
+    year INT64,
+    month INT64,
+    day INT64,
+    PRIMARY KEY(date_id) NOT ENFORCED
+);
+
+INSERT `crack-celerity-435208-v5.real_estate_sales_db.dim_dates_recorded`
+SELECT 
+    DENSE_RANK() OVER(ORDER BY date) AS date_id,
+    date,
+    EXTRACT(YEAR FROM date) AS year,
+    EXTRACT(MONTH FROM date) AS month,
+    EXTRACT(DAY FROM date) AS day
+FROM
+    (
+    SELECT
+        DISTINCT SAFE_CAST(date_recorded AS DATE) AS date
+    FROM
+        `crack-celerity-435208-v5.real_estate_sales_db.source_table`
+    ORDER BY
+        date ASC
+);
