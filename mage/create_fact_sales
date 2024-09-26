@@ -1,0 +1,41 @@
+CREATE OR REPLACE TABLE `crack-celerity-435208-v5.real_estate_sales_db.fact_sales` (
+    sale_id INT64,
+    serial_number INT64,
+    list_year INT64,
+    date_recorded_id INT64 REFERENCES real_estate_sales_db.dim_dates_recorded(date_id) NOT ENFORCED,
+    remark_id INT64 REFERENCES real_estate_sales_db.dim_remarks(remark_id) NOT ENFORCED,
+    property_id INT64 REFERENCES real_estate_sales_db.dim_properties(property_id) NOT ENFORCED,
+    assessed_value FLOAT64,
+    sale_amount FLOAT64,
+    sales_ratio FLOAT64,
+    non_use_code STRING,
+    PRIMARY KEY(sale_id) NOT ENFORCED
+);
+
+INSERT `crack-celerity-435208-v5.real_estate_sales_db.fact_sales`
+SELECT 
+    sale_id,
+    serial_number,
+    list_year,
+    d.date_id,
+    r.remark_id,
+    p.property_id,
+    assessed_value,
+    sale_amount,
+    sales_ratio,
+    non_use_code
+FROM
+    `crack-celerity-435208-v5.real_estate_sales_db.source_table` AS s
+LEFT JOIN 
+    `crack-celerity-435208-v5.real_estate_sales_db.dim_dates_recorded` AS d
+    ON d.date = SAFE_CAST(s.date_recorded AS DATE)
+LEFT JOIN
+    `crack-celerity-435208-v5.real_estate_sales_db.dim_properties` AS p 
+    ON p.town = s.town
+    AND p.address = s.address
+    AND p.location = s.location
+LEFT JOIN
+    `crack-celerity-435208-v5.real_estate_sales_db.dim_remarks` AS r
+    ON r.assessor_remark = s.assessor_remarks
+    AND r.opm_remark = s.opm_remarks
+;
