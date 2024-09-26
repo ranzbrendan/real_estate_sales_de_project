@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: staging
+    database: crack-celerity-435208-v5
+    schema: real_estate_sales_db
+    tables:
+      - name: source_table
