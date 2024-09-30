@@ -1,17 +1,17 @@
-e{{ config(materialized="view") }}
+{{ config(materialized="table") }}
 
-with
-    date_data as (
-        select distinct safe_cast(date_recorded as date) as date
-        from {{ ref("stg_source_table") }}
-        order by date asc
+WITH
+    date_data AS (
+        SELECT DISTINCT SAFE_CAST(date_recorded AS DATE) AS date
+        FROM {{ ref("stg_source_table") }}
+        ORDER BY date ASC
  )
 
-select
+SELECT
     -- identifier
-    {{ dbt_utils.generate_surrogate_key(["date"]) }} as date_id,
-    safe_cast(date) as date,
-    extract(year from date) as year,
-    extract(month from date) as month,
-    extract(day from date) as day
-from date_data
+    {{ dbt_utils.generate_surrogate_key(["date"]) }} AS date_id,
+    SAFE_CAST(date AS DATE) AS date,
+    EXTRACT(year FROM SAFE_CAST(date AS DATE)) AS year,
+    EXTRACT(month FROM SAFE_CAST(date AS DATE)) AS month,
+    EXTRACT(day FROM SAFE_CAST(date AS DATE)) AS day
+FROM date_data
