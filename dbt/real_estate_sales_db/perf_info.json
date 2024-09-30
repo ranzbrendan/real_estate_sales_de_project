@@ -1,0 +1,51 @@
+{
+    "path_count": 159,
+    "parsed_path_count": 159,
+    "static_analysis_path_count": 1,
+    "static_analysis_parsed_path_count": 1,
+    "is_partial_parse_enabled": true,
+    "is_static_analysis_enabled": true,
+    "read_files_elapsed": 0.013495278544723988,
+    "load_macros_elapsed": 0.5218383939936757,
+    "parse_project_elapsed": 0.009820269420742989,
+    "patch_sources_elapsed": 0.0003195321187376976,
+    "process_manifest_elapsed": 0.023724418133497238,
+    "load_all_elapsed": 0.5836715074256063,
+    "projects": [
+        {
+            "project_name": "real_estate_sales_de_project",
+            "elapsed": 0.006790384650230408,
+            "parsers": [
+                {
+                    "parser": "model",
+                    "elapsed": 0.0035344455391168594,
+                    "parsed_path_count": 1
+                },
+                {
+                    "parser": "test",
+                    "elapsed": 0.002303316257894039,
+                    "parsed_path_count": 2
+                }
+            ],
+            "parsed_path_count": 3
+        },
+        {
+            "project_name": "dbt_bigquery",
+            "elapsed": 0.0014101546257734299,
+            "parsers": [],
+            "parsed_path_count": 0
+        },
+        {
+            "project_name": "dbt",
+            "elapsed": 0.001549980603158474,
+            "parsers": [
+                {
+                    "parser": "doc",
+                    "elapsed": 0.0003076419234275818,
+                    "parsed_path_count": 1
+                }
+            ],
+            "parsed_path_count": 1
+        }
+    ]
+}

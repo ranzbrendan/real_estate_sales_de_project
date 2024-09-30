@@ -1,0 +1,1 @@
+{"_invocation_id": "9c099a8f-922a-47ff-b955-9d0484e10814", "linked": {"0": {"name": "source.real_estate_sales_de_project.staging.source_table", "type": "source", "succ": [1]}, "1": {"name": "model.real_estate_sales_de_project.stg_source_table", "type": "model"}}}

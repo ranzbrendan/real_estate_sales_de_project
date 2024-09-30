@@ -5,15 +5,12 @@
 }}
 
 with source as (
-
     select * from {{ source('staging', 'source_table') }}
-
 ),
 
 renamed as (
-
     select
-        sale_id
+        sale_id,
         serial_number,
         list_year,
         date_recorded,
@@ -27,10 +24,8 @@ renamed as (
         non_use_code,
         assessor_remarks,
         opm_remarks,
-        location,
-
+        location
     from source
-
 )
 
 select * from renamed
