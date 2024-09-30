@@ -1,0 +1,32 @@
+CREATE OR REPLACE TABLE `crack-celerity-435208-v5.real_estate_sales_db.dim_properties` (
+    property_id INT64,
+    property_type STRING,
+    residential_type STRING,
+    town STRING,
+    address STRING,
+    location STRING,
+    PRIMARY KEY(property_id) NOT ENFORCED
+);
+
+INSERT `crack-celerity-435208-v5.real_estate_sales_db.dim_properties`
+SELECT 
+    DENSE_RANK() OVER(ORDER BY town, address, location) AS property_id,
+    property_type,
+    residential_type,
+    town,
+    address,
+    location
+FROM
+    (
+    SELECT
+        ROW_NUMBER() OVER(PARTITION BY town, address, location) AS row_num,
+        property_type,
+        residential_type,
+        town,
+        address,
+        location
+    FROM
+        `crack-celerity-435208-v5.real_estate_sales_db.source_table`
+)
+WHERE
+    row_num = 1;
