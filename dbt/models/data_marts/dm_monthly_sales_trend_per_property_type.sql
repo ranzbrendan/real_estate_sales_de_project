@@ -8,7 +8,6 @@ SELECT
     p.property_type,
     d.year,
     d.month,
-    AVG(s.list_year) AS list_year,
     AVG(s.sale_amount) AS avg_sale_amount,
     AVG(s.assessed_value) AS avg_assessed_value,
     (AVG(s.sale_amount) / NULLIF(AVG(s.assessed_value), 0)) AS avg_sales_ratio
