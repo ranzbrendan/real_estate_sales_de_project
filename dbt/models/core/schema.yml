@@ -88,18 +88,21 @@ models:
           - type: not_null 
           - type: foreign_key
             expression: real_estate_sales_db.dim_dates_recorded (date_id)
+            warn_unenforced: false
       - name: property_id
         data_type: string
         constraints:
           - type: not_null 
           - type: foreign_key
             expression: real_estate_sales_db.dim_properties (property_id)
+            warn_unenforced: false
       - name: remark_id
         data_type: string
         constraints:
           - type: not_null 
           - type: foreign_key
             expression: real_estate_sales_db.dim_remarks (remark_id)
+            warn_unenforced: false
       - name: assessed_value
         data_type: float
       - name: sale_amount

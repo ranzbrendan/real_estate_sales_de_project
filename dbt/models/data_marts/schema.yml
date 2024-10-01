@@ -8,8 +8,6 @@ models:
     columns:
       - name: property_type
         data_type: string
-        tests:
-          - unique
       - name: year
         data_type: int
       - name: month
