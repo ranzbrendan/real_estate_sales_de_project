@@ -11,6 +11,7 @@ models:
         constraints:
           - type: not_null
           - type: primary_key
+            warn_unenforced: false
         tests:
           - unique
       - name: date
@@ -32,6 +33,7 @@ models:
         constraints:
           - type: not_null
           - type: primary_key
+            warn_unenforced: false
         tests:
           - unique
       - name: property_type
@@ -55,6 +57,7 @@ models:
         constraints:
           - type: not_null
           - type: primary_key
+            warn_unenforced: false
         tests:
           - unique
       - name: assessor_remark
@@ -72,6 +75,7 @@ models:
         constraints:
           - type: not_null 
           - type: primary_key
+            warn_unenforced: false
         tests:
           - unique
       - name: serial_number
