@@ -5,10 +5,8 @@
 }}
 
 SELECT
-    p.property_type,
-    d.year,
-    d.month,
-    CAST(AVG(s.list_year) AS integer) AS list_year,
+    COALESCE(p.property_type, "Unknown") AS property_type,
+    s.list_year,
     AVG(s.sale_amount) AS avg_sale_amount,
     AVG(s.assessed_value) AS avg_assessed_value,
     (AVG(s.sale_amount) / NULLIF(AVG(s.assessed_value), 0)) AS avg_sales_ratio
@@ -19,6 +17,6 @@ LEFT JOIN {{ ref("dim_properties") }} AS p
 LEFT JOIN {{ ref("dim_dates_recorded") }} AS d 
     ON d.date_id = s.date_recorded_id
 GROUP BY
-    1, 2, 3
+    1, 2
 ORDER BY
-    1, 2, 3
+    1, 2

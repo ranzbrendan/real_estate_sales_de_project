@@ -1,17 +1,13 @@
 version: 2
 
 models:
-  - name: dm_monthly_sales_trend_per_property_type
+  - name: dm_yearly_sales_trend_per_property_type
     config:
       contract: 
         enforced: true
     columns:
       - name: property_type
         data_type: string
-      - name: year
-        data_type: int
-      - name: month
-        data_type: int
       - name: list_year
         data_type: int
       - name: avg_sale_amount
@@ -21,26 +17,18 @@ models:
       - name: avg_sales_ratio
         data_type: float
 
-  - name: dm_location_per_property
+  - name: dm_location_per_town
     config:
       contract:
         enforced: true
     columns:
-      - name: serial_number
-        data_type: int
       - name: list_year
         data_type: int
-      - name: property_type
-        data_type: string
-      - name: residential_type
-        data_type: string
       - name: town
-        data_type: string
-      - name: address
         data_type: string
       - name: location1
         data_type: string
       - name: location2
         data_type: geography
-      - name: sale_amount
+      - name: avg_sale_amount
         data_type: float
