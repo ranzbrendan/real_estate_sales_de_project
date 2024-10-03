@@ -1,22 +1,40 @@
 version: 2
 
 models:
-  - name: dm_monthly_sales_trend_per_property_type
+  - name: dm_median_sales_amount_per_property_type
     config:
       contract: 
         enforced: true
     columns:
       - name: property_type
         data_type: string
-      - name: year
-        data_type: int
-      - name: month
-        data_type: int
       - name: list_year
         data_type: int
       - name: avg_sale_amount
         data_type: float
       - name: avg_assessed_value
         data_type: float
-      - name: avg_sales_ratio
+      - name: median_sale_amount
+        data_type: float
+      - name: median_assessed_value
+        data_type: float
+
+  - name: dm_median_sales_amount_per_town
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: list_year
+        data_type: int
+      - name: property_type
+        data_type: string
+      - name: town
+        data_type: string
+      - name: location1
+        data_type: string
+      - name: location2
+        data_type: geography
+      - name: avg_sale_amount
+        data_type: float
+      - name: median_sale_amount
         data_type: float
