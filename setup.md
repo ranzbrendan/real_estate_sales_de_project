@@ -239,4 +239,47 @@ Check if docker-compose was successfully added to the PATH variable
 ~$ terraform -version
 ```
 
-## Copy the Google Credentials to the VM
+## GCP Service Account Setup
+- In the Google Cloud Console, navigate to: IAM & ADMIN -> Service Accounts
+- Create a service account
+- Configure the account name and ID as you like
+- Add roles:
+  - Cloud Storage - Storage Admin 
+  - BigQuery - BigQuery Admin
+  - Compute Engine - Compute Admin
+- Click save
+- In the service accounts tab, click the ellipsis under the actions column and click manage keys.
+- Create a new key and select JSON. *do not show this service account to others*
+
+### Copy the Google Credentials to the VM
+- Open a new unix-like terminal (outside the VM)
+- navigate to the location of the downloaded google credentials file
+```
+~/path/to/credentials$ sftp < VM instance name >
+```
+```
+sftp> mkdir .gc
+```
+```
+sftp> cd .gc
+```
+```
+sftp> put < credentials_file_name.json >
+```
+- Go back to the VS Code terminal connected to the VM
+```
+~$ cd
+```
+Check if the file is now in your VM
+```
+~$ ls
+```
+### Configure gcloud
+Set `GOOGLE_APPLICATION_CREDENTIALS` to point to the file
+```
+export GOOGLE_APPLICATION_CREDENTIALS=~/.gc/<credentials_file_name.json>
+```
+```
+~$ gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
+```
+
