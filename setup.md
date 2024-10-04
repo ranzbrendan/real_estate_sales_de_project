@@ -97,7 +97,7 @@ wget https://repo.anaconda.com/archive/Anaconda3-2024.06-1-Linux-x86_64.sh
 ```
 bash Anaconda3-2024.06-1-Linux-x86_64.sh
 ```
-Accept License.  
+Review and accept License.  
 It will take some time to install.  
 
 
