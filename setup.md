@@ -119,3 +119,31 @@ import pandas
 ```
 pandas.__version__
 ```
+
+## Connect to VM using VS code
+
+- Open VS code and install the Remote - SSH extension.  
+- At the lower-left corner, click the button to open a remote window.
+- Click connect to host.
+- Because we have created the config file, the VM host should appear in the options. Click on this.
+- 
+
+## Install Docker
+
+Fetch the list of packages
+```
+sudo apt-get update
+```
+Now install docker
+```
+sudo apt-get install docker.io
+```
+Configure docker commands to run without sudo
+```
+$ sudo groupadd docker
+```
+
+## Clone this repository
+```
+git clone https://github.com/ranzbrendan/real_estate_sales_de_project.git
+```
