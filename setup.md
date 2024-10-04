@@ -231,3 +231,12 @@ Check if docker-compose was successfully added to the PATH variable
 ```
 ~/bin$ rm terraform_1.9.7_linux_amd64.zip
 ```
+- Check
+```
+~/bin$ cd
+```
+```
+~$ terraform -version
+```
+
+## Copy the Google Credentials to the VM
