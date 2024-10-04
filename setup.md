@@ -1,14 +1,15 @@
 # Setup the Environment on Google Cloud Virtual Machine
 ## Generate SSH Key
 (LINUX)
-Open a unix-like terminal and use the ssh-keygen command with -C flag to generate a ssh key pair:
+Open a unix-like terminal and make a .ssh/ directory 
 ```
 ~$ mkdir .ssh/
 ```
 ```
 ~$ cd .ssh/
 ```
-For the command below, replace KEY_FILENAME (name of SSH key file) and USER (your username)
+- Use the ssh-keygen command with -C flag to generate a ssh key pair
+- Replace KEY_FILENAME (name of SSH key file) and USER (your username)
 ```
 ~/.ssh$ ssh-keygen -t rsa -f ~/.ssh/KEY_FILENAME -C USER -b 2048
 ```
