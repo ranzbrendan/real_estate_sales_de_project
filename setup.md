@@ -98,6 +98,24 @@ wget https://repo.anaconda.com/archive/Anaconda3-2024.06-1-Linux-x86_64.sh
 bash Anaconda3-2024.06-1-Linux-x86_64.sh
 ```
 Review and accept License.  
+Confirm installation location.  
 It will take some time to install.  
-
-
+Enter yes to automatically initialize Anaconda3.  
+For changes to take effect, you'll need to reconnect, or just use:
+```
+source .bashrc
+```
+There should now be (base) at the start of each command line.
+Check if python if installed.  
+```
+which python
+```
+```
+python
+```
+```
+import pandas
+```
+```
+pandas.__version__
+```
