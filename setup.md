@@ -62,4 +62,42 @@ Check if Google Cloud SDK is installed
 ```
 gcloud --version
 ```
-## Install
+## Setup ssh config
+Open a new unix-like terminal outside of the vm environment.  
+```
+cd .ssh/
+```
+```
+touch config
+```
+```
+code config
+```
+This will open the config file in VS code.
+Enter this into the file and replace the values.  
+Example of identity file path: *c:/Users/USER/.ssh/KEY_FILENAME*
+```
+Host < VM instance name >
+    Hostname < External IP >
+    User < USER >
+    IdentityFile < path/to/your/private/ssh/key >
+```
+You can now connect to the vm environment with:
+```
+cd
+```
+```
+ssh < VM instance name >
+```
+
+## Install Anaconda
+```
+wget https://repo.anaconda.com/archive/Anaconda3-2024.06-1-Linux-x86_64.sh
+```
+```
+bash Anaconda3-2024.06-1-Linux-x86_64.sh
+```
+Accept License.  
+It will take some time to install.  
+
+
