@@ -13,7 +13,7 @@ renamed as (
         sale_id,
         serial_number,
         list_year,
-        date_recorded,
+        SAFE_CAST(date_recorded AS DATE) AS date_recorded,
         town,
         address,
         assessed_value,
