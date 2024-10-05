@@ -4,7 +4,7 @@
 
 The dataset contains all Connecticut real estate sales with a sales price of $2,000 or greater  
 that occur between October 1 and September 30 of each year from 2001 - 2022.  
-The data is a csv file which contains 1097629 rows and 14 columns:
+The data is a csv file which contains 1097629 rows and 14 columns, namely:
 
 | Column Name | Description |
 |------------ | ----------- |
@@ -23,11 +23,12 @@ The data is a csv file which contains 1097629 rows and 14 columns:
 | OPM Remarks | Remarks from OPM on the property |
 | Location | Geographic coordinates (Longitude, Latitude) |
 
-
-
-The Office of Policy and Management maintains a listing of all real estate sales with a sales price of $2,000 or greater that occur between October 1 and September 30 of each year. For each sale record, the file includes: town, property address, date of sale, property type (residential, apartment, commercial, industrial or vacant land), sales price, and property assessment.
-
 ## Problem Description
+This pipeline project aims to answer these main questions:
+
+- Which towns will most likely offer properties within my budget?
+- What is the typical sale amount for each property type?
+- What is the historical trend of real estate sales?
 
 ## Technology Stack
 - Google Cloud Virtual Machine (Virtual Environment)
