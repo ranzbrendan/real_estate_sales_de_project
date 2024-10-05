@@ -38,3 +38,18 @@ models:
         data_type: float
       - name: median_sale_amount
         data_type: float
+  - name: dm_overall_metrics
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: total_volume
+        data_type: float
+      - name: number_of_sales
+        data_type: int
+      - name: avg_sale_amount
+        data_type: float
+      - name: median_sale_amount
+        data_type: float
+      - name: avg_sales_ratio
+        data_type: float

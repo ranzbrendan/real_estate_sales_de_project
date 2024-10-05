@@ -30,6 +30,7 @@ sale AS (
         ON p.property_id = s.property_id 
     WHERE
         sale_amount IS NOT NULL
+        AND sale_amount > 2000
     GROUP BY
         1, 2, 3
 )   
