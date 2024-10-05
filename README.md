@@ -1,8 +1,33 @@
 # Real Estate Sales Data Pipeline
 
-## Problem Description
-
 ## About the Data
+
+The dataset contains all Connecticut real estate sales with a sales price of $2,000 or greater  
+that occur between October 1 and September 30 of each year from 2001 - 2022.  
+The data is a csv file which contains 1097629 rows and 14 columns:
+
+| Column Name | Description |
+|------------ | ----------- |
+| Serial Number | Serial number of the property |
+| List Year | Year the property was listed for sale |
+| Date Recorded | Date the sale was recorded locally |
+| Town | Town the property is located |
+| Address | Property Address |
+| Assessed Value | Value of the property used for local tax assessment |
+| Sale Amount | Amount the property was sold for |
+| Sales Ratio | Ratio of the sale price to the assessed value |
+| Property Type | Type of property |
+| Residential Type | Type of Residence |
+| Non Use Code | Determines whether sale price is not reliable for use in the determination of a property's value |
+| Assessor Remarks | Remarks from the assessor on the property |
+| OPM Remarks | Remarks from OPM on the property |
+| Location | Geographic coordinates (Longitude, Latitude) |
+
+
+
+The Office of Policy and Management maintains a listing of all real estate sales with a sales price of $2,000 or greater that occur between October 1 and September 30 of each year. For each sale record, the file includes: town, property address, date of sale, property type (residential, apartment, commercial, industrial or vacant land), sales price, and property assessment.
+
+## Problem Description
 
 ## Technology Stack
 - Google Cloud Virtual Machine (Virtual Environment)
