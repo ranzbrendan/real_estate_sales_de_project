@@ -23,6 +23,6 @@
 
 # Visualization
 
-~[dashboard](images/real_estate_sales_dashboard.png)
+![dashboard](images/real_estate_sales_dashboard.png)
 [Link to the Dashboard](https://lookerstudio.google.com/reporting/fadbe10e-9b4a-4007-8dd7-e407aa03e144)
 
