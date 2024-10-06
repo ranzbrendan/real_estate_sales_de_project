@@ -1,3 +1,5 @@
+> [!NOTE]
+> Not yet complete
 # Setup the Environment on Google Cloud Virtual Machine
 ## Generate SSH Key
 (LINUX)
