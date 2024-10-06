@@ -96,6 +96,8 @@ This pipeline project aims to answer these main questions:
 
 ## DBT Transformation Lineage Graph
 ![dbt lineage](images/dbt-dag.png)
+> [!Note]
+> To add more details
 
 # Visualization
 
