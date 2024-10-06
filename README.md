@@ -11,7 +11,7 @@ The data is a csv file which contains 1097629 rows and 14 columns, namely:
 | Serial Number | Serial number of the property |
 | List Year | Year the property was listed for sale |
 | Date Recorded | Date the sale was recorded locally |
-| Town | Town the property is located |
+| Town | Town the property is located at |
 | Address | Property Address |
 | Assessed Value | Value of the property used for local tax assessment |
 | Sale Amount | Amount the property was sold for |
@@ -20,7 +20,7 @@ The data is a csv file which contains 1097629 rows and 14 columns, namely:
 | Residential Type | Type of Residence |
 | Non Use Code | Determines whether sale price is not reliable for use in the determination of a property's value |
 | Assessor Remarks | Remarks from the assessor on the property |
-| OPM Remarks | Remarks from OPM on the property |
+| OPM Remarks | Remarks from Office of Policy and Management (OPM) on the property |
 | Location | Geographic coordinates (Longitude, Latitude) |
 
 ## Problem Description
@@ -81,6 +81,18 @@ This pipeline project aims to answer these main questions:
 | Column Name | Data Type | Constraints | Description |
 | ----------- | --------- | ----------- | ----------- |
 | property_id | STRING | Not Null, Primary Key | Surrogate key for dim_properties |
+| property_type | STRING | | Type of property |
+| residential_type | STRING | | Type of residence if property type is residential |
+| town | STRING | | Town the property is located at |
+| address | STRING | | Property address |
+| location | STRING | | Geographic corrdinates of the property (Longitude, Latitude) |
+
+### dim_remarks
+| Column Name | Data Type | Constraints | Description |
+| ----------- | --------- | ----------- | ----------- |
+| remark_id | STRING | Not Null, Primary Key | Surrogate key for dim_remarks |
+| assessor_remark | STRING | | Remarks from the assessor on the property |
+| opm_remark | STRING | | Remarks from the Office of Policy and Management (OPM) on the property |
 
 ## DBT Transformation Lineage Graph
 ![dbt lineage](images/dbt-dag.png)
