@@ -101,6 +101,12 @@ This pipeline project aims to answer these main questions:
 
 ![dashboard](images/real_estate_sales_dashboard.png)
 [Link to the Dashboard](https://lookerstudio.google.com/reporting/fadbe10e-9b4a-4007-8dd7-e407aa03e144)
+- The top part of the dashboard content shows the overall metrics of real estate sales in Connecticut, such as the `total sales volume`, `number of sales`, `average sales amount`, `median sales amount`, and the `average sales-to-assessed ratop`. These provides summary aggregations of the data.
+- Used median as the measure of central tendency for the other charts, since the data is heavily skewed to the right.
+- The time series graph shows the yearly pattern for the median sales. The last 3 years (2020, 2021, 2022) have had increased amount of median sales.
+- The column chart provides the median sales amount per property type.
+- A bubble map is also included to visualize the data on the map. Each bubble represent a town in connecticut, and larger sizes & darker colors correspond to higher median sales amount. We can see that the median sales amount tends to be higher in towns located at the southwest area of Connecticut.
+- Filter options are included at the right side of the dashboard wherein you can filter by list year or by property type.
 
 
 ## [You can click here for the setup to reproduce the project](https://github.com/ranzbrendan/real_estate_sales_de_project/blob/main/setup.md)
