@@ -37,18 +37,59 @@ This pipeline project aims to answer these main questions:
 - Terraform (Infrastructure As Code)
 - Docker & Docker Compose (Containerization)
 - Mage (Workflow Orchestration)
+    - Reason for using Mage - I figured that as a complete beginner in the field of data and technology, it was better not to overwhelm myself too much. After doing a little bit of research, Mage seemed to be the one most suitable for me, a beginner, in order to create my first data engineering project. In the near future, I plan to learn other workflow orchestration tools such as Airflow, Prefect, and Dagster.
 - dbt Cloud (Transformation)
 - Looker Studio (Visualization)
 
-## [You can click here for the setup to reproduce the project](https://github.com/ranzbrendan/real_estate_sales_de_project/blob/main/setup.md)
-
+## Pipeline Architecture
 ![pipeline architecture](images/pipeline_architecture.jpg)
+- Set up a virtual environment using Google Cloud Compute Engine as to not consume my own laptop's storage when installing dependencies, it also provides faster download speeds, and better performance.
+- Used Docker and Docker Compose to containerize the Mage instance.
+- Set up the infrastructure for Google Cloud Storage (GCS) bucket and Google BigQuery dataset using Terraform.
+- Mage is used to move data from the data source into a GCS bucket (data lake), and BigQuery dataset (data warehouse).
+- Created models to transform the data:
+  - Applies dimensional modeling to split the data into fact and dimension tables
+  - Adds surrogate keys as identifiers for each table
+  - Creates tables that contain specific parts of the data for data analysis
+  - Cleansed the data in the data mart. Removed NULL sale amounts and location, and only included sale amounts which are $2000 or higher (since it was said in the data description)
+ 
+## Table Schemas
+### fact_sales
+| Column Name | Data Type | Constraints | Description |
+| ----------- | --------- | ----------- | ----------- |
+| sale_id | INTEGER | not null, primary key | Sales identifier created in Mage |
+| serial_number | INTEGER | | Serial number of property (apparently these are not unique) |
+| list_year | INTEGER | | Year the property was listed for sale |
+| date_recorded_id | STRING | Not Null, Foreign Key to dim_dates_recorded (date_id) | Date recorded ID |
+| property_id | STRING | Not Null, Foreign Key to dim_properties (property_id) | Property ID |
+| remark_id | STRING | Not Null, Foreign Key to dim_remarks (remark_id) | Remark ID |
+| assessed_value | FLOAT | | Value of the property used for local tax assessment |
+| sale_amount | FLOAT | | Amount the property was sold for |
+| sales_ratio | FLOAT | | Ratio of the sales price to assessed value |
+| non_use_code | STRING | | Determines whether sale price is not reliable for use in the determination of a property's value |
 
+### dim_dates_recorded
+| Column Name | Data Type | Constraints | Description |
+| ----------- | --------- | ----------- | ----------- |
+| date_id | STRING | Not Null, Primary Key | Surrogate key for dim_dates_recorded |
+| date | DATE | | Date the sale was recorded locally |
+| year | INTEGER | | Year extracted from the date recorded |
+| month | INTEGER | | Month extracted from the date recorded |
+| day | INTEGER | | Day extracted from the date recorded |
 
+### dim_properties
+| Column Name | Data Type | Constraints | Description |
+| ----------- | --------- | ----------- | ----------- |
+| property_id | STRING | Not Null, Primary Key | Surrogate key for dim_properties |
+
+## DBT Transformation Lineage Graph
 ![dbt lineage](images/dbt-dag.png)
 
 # Visualization
 
 ![dashboard](images/real_estate_sales_dashboard.png)
 [Link to the Dashboard](https://lookerstudio.google.com/reporting/fadbe10e-9b4a-4007-8dd7-e407aa03e144)
+
+
+## [You can click here for the setup to reproduce the project](https://github.com/ranzbrendan/real_estate_sales_de_project/blob/main/setup.md)
 
