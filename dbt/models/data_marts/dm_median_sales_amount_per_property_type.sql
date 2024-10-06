@@ -19,7 +19,7 @@ LEFT JOIN {{ ref("dim_dates_recorded") }} AS d
     ON d.date_id = s.date_recorded_id
 WHERE
     s.sale_amount IS NOT NULL
-    AND s.sale_amount > 2000
+    AND s.sale_amount >= 2000
 GROUP BY
     1, 2
 ORDER BY
