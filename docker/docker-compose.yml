@@ -1,0 +1,19 @@
+version: "3"
+services:
+  magic:
+    image: mageai/mageai:latest
+    command: mage start ${PROJECT_NAME}
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      USER_CODE_PATH: /home/src/${PROJECT_NAME}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+    ports:
+      - 6789:6789
+    volumes:
+      - ../mage/:/home/src/
+      - ~/.gc/personal-project-key.json:/home/src/personal-project-key.json
+    restart: on-failure:5

@@ -1,25 +1,28 @@
+> [!NOTE]
+> Not yet complete
 # Setup the Environment on Google Cloud Virtual Machine
 ## Generate SSH Key
 (LINUX)
-Open a unix-like terminal and use the ssh-keygen command with -C flag to generate a ssh key pair:
+Open a unix-like terminal and make a .ssh/ directory 
 ```
-mkdir .ssh/
+~$ mkdir .ssh/
 ```
 ```
-cd .ssh/
+~$ cd .ssh/
 ```
-For the command below, replace KEY_FILENAME (name of SSH key file) and USER (your username)
+- Use the ssh-keygen command with -C flag to generate a ssh key pair
+- Replace KEY_FILENAME (name of SSH key file) and USER (your username)
 ```
-ssh-keygen -t rsa -f ~/.ssh/KEY_FILENAME -C USER -b 2048
+~/.ssh$ ssh-keygen -t rsa -f ~/.ssh/KEY_FILENAME -C USER -b 2048
 ```
 - Hit enter when propmted for a passphrase to set it to none.  
 - You can add one for security reasons but you may have to do additional steps whenever you access the ssh keys.
 ```
-ls
+~/.ssh$ ls
 ```
 There will be two files, private and public key. (Never show private key to anyone)
 ```
-cat KEY_FILENAME.pub
+~/.ssh$ cat KEY_FILENAME.pub
 ```
 - Copy the content of the public ssh key into the clipboard.
 
@@ -50,28 +53,28 @@ cat KEY_FILENAME.pub
 After the vm instance has loaded, copy the External IP.  
 You can connect to the vm by going back to the terminal and entering these lines of code:
 ```
-cd
+~/.ssh$ cd
 ```
 Don't forget to replace the KEY_FILENAME and USER to the ones you set previously.  
 Moreover, paste the external IP into the EXTERNAL_IP
 ```
-ssh -i ~/.ssh/KEY_FILENAME USER@EXTERNAL_IP
+~$ ssh -i ~/.ssh/KEY_FILENAME USER@EXTERNAL_IP
 ```
 You will be connected to the virtual machine.  
 Check if Google Cloud SDK is installed
 ```
-gcloud --version
+~$ gcloud --version
 ```
 ## Setup ssh config
 Open a new unix-like terminal outside of the vm environment.  
 ```
-cd .ssh/
+~$ cd .ssh/
 ```
 ```
-touch config
+~/.ssh$ touch config
 ```
 ```
-code config
+~/.ssh$ code config
 ```
 This will open the config file in VS code.
 Enter this into the file and replace the values.  
@@ -84,18 +87,18 @@ Host < VM instance name >
 ```
 You can now connect to the vm environment with:
 ```
-cd
+~/.ssh$ cd
 ```
 ```
-ssh < VM instance name >
+~$ ssh < VM instance name >
 ```
 
 ## Install Anaconda
 ```
-wget https://repo.anaconda.com/archive/Anaconda3-2024.06-1-Linux-x86_64.sh
+~$ wget https://repo.anaconda.com/archive/Anaconda3-2024.06-1-Linux-x86_64.sh
 ```
 ```
-bash Anaconda3-2024.06-1-Linux-x86_64.sh
+~$ bash Anaconda3-2024.06-1-Linux-x86_64.sh
 ```
 Review and accept License.  
 Confirm installation location.  
@@ -103,15 +106,15 @@ It will take some time to install.
 Enter yes to automatically initialize Anaconda3.  
 For changes to take effect, you'll need to reconnect, or just use:
 ```
-source .bashrc
+~$ source .bashrc
 ```
 There should now be (base) at the start of each command line.
 Check if python if installed.  
 ```
-which python
+~$ which python
 ```
 ```
-python
+~$ python
 ```
 ```
 import pandas
@@ -119,14 +122,6 @@ import pandas
 ```
 pandas.__version__
 ```
-
-## Connect to VM using VS code
-
-- Open VS code and install the Remote - SSH extension.  
-- At the lower-left corner, click the button to open a remote window.
-- Click connect to host.
-- Because we have created the config file, the VM host should appear in the options. Click on this.
-- 
 
 ## Install Docker
 
@@ -139,11 +134,154 @@ Now install docker
 sudo apt-get install docker.io
 ```
 Configure docker commands to run without sudo
+1. Add the docker group if not exists.
 ```
-$ sudo groupadd docker
+sudo groupadd docker
+```
+2. Add the connected user $USER to the docker group
+```
+sudo gpasswd -a $USER docker
+```
+3. Reconnect to the vm connection.
+*ctrl + D*
+```
+ssh < VM instance name >
+```
+4. This should now work:
+```
+docker run hello-world
+```
+
+## Install Docker Compose
+Get the latest version from  
+`https://github.com/docker/compose/releases`
+```
+cd
+```
+```
+mkdir bin
+```
+```
+cd bin/
+```
+This is for version 2.29.7 of docker compose. Don't forget to include the output flag and name
+```
+wget https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-linux-x86_64 -O docker-compose
+```
+Make the file executable.
+```
+~/bin$ chmod +x docker-compose
+```
+Check
+```
+~/bin$ ./docker-compose version
+```
+Add docker compose to the path variable.  
+```
+~/bin$ cd
+```
+```
+~$ nano .bashrc
+```
+Scroll to the end of file and add:
+```
+export PATH="${HOME}/bin:${PATH}"
+```
+Press *ctrl + O* to save, press enter, then *ctrl + X* to exit.  
+Re-read the .bashrc file and apply the new changes. 
+```
+~$ source .bashrc
+```
+Check if docker-compose was successfully added to the PATH variable
+```
+~$ which docker-compose
 ```
 
 ## Clone this repository
 ```
-git clone https://github.com/ranzbrendan/real_estate_sales_de_project.git
+~$ git clone https://github.com/ranzbrendan/real_estate_sales_de_project.git
 ```
+
+## Connect to VM using VS code
+
+- Open VS code and install the Remote - SSH extension.  
+- At the lower-left corner, click the button to open a remote window.
+- Click connect to host.
+- Because we have created the config file, the VM host should appear in the options. Click on this.
+- Click "Linux" when prompted for the platform of the remote host.
+- Click on the Explorer tab and Open Folder `home/your_username/`. Click OK.
+- Open a terminal in VS Code. You can now enter the remaining commands here.
+
+## Install Terraform
+- Get the download link address for terraform here: `https://developer.hashicorp.com/terraform/install?product_intent=terraform`.
+- Choose the AMD64 Binary download for linux.
+```
+~$ cd bin/
+```
+```
+~/bin$ wget https://releases.hashicorp.com/terraform/1.9.7/terraform_1.9.7_linux_amd64.zip 
+```
+- Install unzip
+```
+~/bin$ sudo apt-get install unzip
+```
+- Unzip the installed terraform zipfile
+```
+~/bin$ unzip terraform_1.9.7_linux_amd64.zip
+```
+- Remove the zip file
+```
+~/bin$ rm terraform_1.9.7_linux_amd64.zip
+```
+- Check
+```
+~/bin$ cd
+```
+```
+~$ terraform -version
+```
+
+## GCP Service Account Setup
+- In the Google Cloud Console, navigate to: IAM & ADMIN -> Service Accounts
+- Create a service account
+- Configure the account name and ID as you like
+- Add roles:
+  - Cloud Storage - Storage Admin 
+  - BigQuery - BigQuery Admin
+  - Compute Engine - Compute Admin
+- Click save
+- In the service accounts tab, click the ellipsis under the actions column and click manage keys.
+- Create a new key and select JSON. *do not show this service account to others*
+
+### Copy the Google Credentials to the VM
+- Open a new unix-like terminal (outside the VM)
+- navigate to the location of the downloaded google credentials file
+```
+~/path/to/credentials$ sftp < VM instance name >
+```
+```
+sftp> mkdir .gc
+```
+```
+sftp> cd .gc
+```
+```
+sftp> put < credentials_file_name.json >
+```
+- Go back to the VS Code terminal connected to the VM
+```
+~$ cd
+```
+Check if the file is now in your VM
+```
+~$ ls
+```
+### Configure gcloud
+Set `GOOGLE_APPLICATION_CREDENTIALS` to point to the file
+```
+export GOOGLE_APPLICATION_CREDENTIALS=~/.gc/<credentials_file_name.json>
+```
+```
+~$ gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
+```
+
