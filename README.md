@@ -37,7 +37,7 @@ This pipeline project aims to answer these main questions:
 - `Terraform` (Infrastructure As Code)
 - `Docker` & `Docker Compose` (Containerization)
 - `Mage` (Workflow Orchestration)
-    - Reason for using Mage - I figured that as a complete beginner in the field of data and technology, it was better not to overwhelm myself too much. After doing a little bit of research, Mage seemed to be the one most suitable for me, a beginner, in order to create my first data engineering project. In the near future, I plan to learn other workflow orchestration tools such as Airflow, Prefect, and Dagster.
+    - Reason for using Mage - I figured that as a complete beginner in the field of data and technology, it was better not to overwhelm myself. After doing a little bit of research, Mage seemed to be the one most suitable for me, a beginner, in order to create my first data engineering project. In the near future, I plan to learn other workflow orchestration tools such as Airflow, Prefect, and Dagster.
 - `dbt Cloud` (Transformation)
 - `Looker Studio` (Visualization)
 
